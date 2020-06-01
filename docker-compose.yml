@@ -13,10 +13,10 @@ services:
       - config/.secrets
     command: gunicorn wsgi:app -w 5 -b :8000 --timeout 3000 --reload
   redis:
-    image: redis:latest
+    image: bitnami/redis:latest
     restart: always
-    expose:
-      - '6379'
+    env_file:
+      - config/.secrets
     volumes:
       - redis_data:/data
 

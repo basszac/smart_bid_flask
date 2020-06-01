@@ -19,7 +19,8 @@ todo = api.model('CustomerData', {
 r = redis.Redis(
     host='redis',
     port=6379,
-    db=0
+    db=0,
+    password='password123'
 )
 
 @ns.route('/customer/<string:entity_id>')
@@ -33,5 +34,11 @@ class CustomerData(Resource):
     @ns.expect(todo)
     def post(self, entity_id):
         r.set(entity_id, json.dumps(api.payload))
+        return entity_id
+
+    def delete(self, entity_id):
+        r.delete(entity_id)
+        return entity_id
+
 
 
