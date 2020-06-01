@@ -5,13 +5,13 @@ services:
     restart: always
     volumes:
       - ./app:/app
-    expose:
-      - '8000'
+    ports:
+      - 8000:8000
     depends_on:
       - redis
     env_file:
       - config/.secrets
-    command: gunicorn app:app -w 5 -b :8000 --timeout 3000 --reload
+    command: gunicorn wsgi:app -w 5 -b :8000 --timeout 3000 --reload
   redis:
     image: redis:latest
     restart: always
