@@ -15,9 +15,9 @@ api = Api(
 ns = api.namespace('v1', description='Application operations')
 
 todo = api.model('CustomerData', {
-    'customer_id': fields.String(
+    'entity_id': fields.String(
         readonly=True,
-        description='The customer unique identifier'
+        description="The entity's unique identifier"
     ),
     'data': fields.String(
         required=True,
