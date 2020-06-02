@@ -18,7 +18,7 @@ services:
     env_file:
       - config/.secrets
     volumes:
-      - redis_data:/data
+      - redis_data:/bitnami/redis/data
 
 volumes:
   redis_data:
