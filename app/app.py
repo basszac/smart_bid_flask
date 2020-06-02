@@ -14,7 +14,7 @@ api = Api(
 
 ns = api.namespace('v1', description='Application operations')
 
-todo = api.model('CustomerData', {
+todo = api.model('EntityData', {
     'entity_id': fields.String(
         readonly=True,
         description="The entity's unique identifier"
@@ -55,6 +55,8 @@ class CustomerData(Resource):
     @ns.response(201, 'Entity entered')
     def post(self, entity_id):
         '''Create a new entity (or modify existing) and add data'''
+        print('api.payload:')
+        print(api.payload)
         r.set(entity_id, json.dumps(api.payload))
         return entity_id, 201
 
